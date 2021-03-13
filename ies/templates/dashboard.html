@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>Student Adda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="home.css">
+    <link rel="stylesheet" href="dashboard.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <script type="text/javascript" href='dashboard.js'></script>
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm p-lg-3 p-sm-1">
+            <a class="navbar-brand ml-lg-5 ml-sm-1" href="home.html">Student Adda</a>
+           
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto mt-2 p-3 mt-lg-0">
+                    <li class="nav-item mr-lg-5">
+                        <a class="nav-link p-3" href="home.html" > Logout <i class="fa fa-sign-out"></i></a>
+                    </li>
+                </ul>
+
+            </div>
+        </nav>
+        <div class="container dashboard">
+            <h2 class="text-center">Dashboard</h2>
+            <center>
+            <form action="">
+                <div class="form-group">
+                    <div class='row mb-1'>
+                        <div class="col-md-6 col-sm-6">
+                            <label for="enroll">Enroll.:</label>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <span id="enroll" style="display: inline;">0177CS181131</span>
+                        </div>
+                    </div>
+                <div class='row'>
+                    <div class="col-md-6 col-sm-6">
+                        <label for="name">Name :</label>
+                    </div>
+                    <div class="col-md-6 col-sm-6">
+                        <span id="name" class="editable" style="display: inline;">wonderhub</span>
+                        <input type="text" style="display: none;" name="name">
+                    </div>
+                </div>
+                </div>
+                <div class="form-group ">
+                    <div class='row'>
+                        <div class="col-md-6 col-sm-6">
+                            <label for="email">Email :</label>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <span id="email" class="editable" style="display: inline;">railcdv@gmail.com</span>
+                            <input type="email" style="display: none;" name="email">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class='row'>
+                        <div class="col-md-6 col-sm-6">
+                            <label for="address">Address :</label>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <span id="address" class="editable" style="display: inline;">XYZJbjn</span>
+                            <input type="text" style="display: none;" name="address">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class='row'>
+                        <div class="col-md-6 col-sm-6">
+                            <label for="contact">Contact :</label>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <span id="contact" class="editable" style="display: inline;">865768168</span>
+                            <input type="number" style="display: none;" name="contact">
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class='row'>
+                        <div class="col-md-6 col-sm-6">
+                            <label for="skill">Skills :</label>
+                        </div>
+                        <div class="col-md-6 col-sm-6">
+                            <span id="skill" class="editable" style="display: inline;">--</span>
+                            <input type="number" style="display: none;" name="contact">
+                        </div>
+                    </div>
+                </div>
+                <button class="btn save-btn"'>Save</button>
+                <p>Click fields to edit your details</p>
+            </form>
+                
+            </center>
+        </div>
+    </header>
+
+<script type="text/javascript">
+    $(function () {
+        $(".editable").each(function () {
+            var label = $(this);
+            label.after("<input type = 'text' style = 'display:none' />");
+            var textbox = $(this).next();
+            textbox[0].name = this.id.replace("lbl", "txt");
+            textbox.val(label.html());
+            label.click(function () {
+                $(this).hide();
+                $(this).next().show();
+            });
+            textbox.focusout(function () {
+                $(this).hide();
+                $(this).prev().html($(this).val());
+                $(this).prev().show();
+            });
+        });
+    });
+</script>
+</body>
+
+</html>

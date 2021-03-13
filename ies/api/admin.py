@@ -5,7 +5,10 @@ class teacherAdmin(admin.ModelAdmin):
     list_display=['id','name','email','pas']
 
 class studentAdmin(admin.ModelAdmin):
-    list_display=['id','branch','sem','sec','enroll','name','dob','email','phone','add','pas','att']
+    list_display=['id','branch','sem','sec','enroll','email','pas','att']
+
+class studentDetailAdmin(admin.ModelAdmin):
+    list_display=['enroll','name','dob','phone','add']
 
 class attendanceAdmin(admin.ModelAdmin):
     list_display=['id','date','stu']
@@ -13,3 +16,4 @@ class attendanceAdmin(admin.ModelAdmin):
 admin.site.register(teacher,teacherAdmin)
 admin.site.register(student,studentAdmin)
 admin.site.register(attendance,attendanceAdmin)
+admin.site.register(studentDetail,studentDetailAdmin)

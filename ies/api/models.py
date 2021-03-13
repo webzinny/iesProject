@@ -10,11 +10,7 @@ class student(models.Model):
     sem=models.IntegerField()
     sec=models.CharField(max_length=2)
     enroll=models.CharField(max_length=10)
-    name=models.CharField(max_length=32)
-    dob=models.DateField()
     email=models.EmailField()
-    phone=models.IntegerField()
-    add=models.CharField(max_length=64)
     pas=models.CharField(max_length=20)
 
     def __str__(self):
@@ -22,6 +18,13 @@ class student(models.Model):
 
     def att(self):
         return [i.date for i in attendance.objects.filter(enroll=self.id)]
+
+class studentDetail(models.Model):
+    enroll=models.OneToOneField(student,on_delete=models.CASCADE,primary_key=True)
+    name=models.CharField(max_length=32)
+    dob=models.DateField()
+    phone=models.IntegerField()
+    add=models.CharField(max_length=64)
 
 class attendance(models.Model):
     date=models.DateField()
