@@ -1,36 +1,32 @@
-from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import JsonResponse,HttpResponse
 from .models import *
+from rest_framework import serializers
+from rest_framework.renderers import JSONRenderer
 
-def home(request):
-    return render(request,'home.html')
+class studentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=student
+        fields=['enroll','email']
 
-def studentLogin(request):
-    if request.method=='POST':
-        enroll=request.POST['enroll']
-        pas=request.POST['pas']
-        try:
-            obj=student.objects.get(enroll=enroll)
-            if obj.pas==pas:
-                return redirect('studentDashboard')
-            else:
-                return render(request,'home.html',{'msg':'Wrong Password'})
-        except :
-            return render(request,'home.html',{'msg':'Enrollment not found'})
-    return redirect('home')
+def validate(request):
+    email=request.GET['email']
+    pas=request.GET['pas']
+    try:
+        obj=teacher.objects.get(email=email)
+        if obj.pas==pas:
+            return JsonResponse({'status':'ok'})
+        else:
+            return JsonResponse({'status':'wrong pas'})
+    except:
+        return JsonResponse({'status':'not found'})
 
-def studentRegister(request):
-    if request.method=='POST':
-        branch=request.POST['branch']
-        sem=request.POST['sem']
-        sec=request.POST['sec']
-        enroll=request.POST['enroll']
-        email=request.POST['email']
-        pas=request.POST['pas']
-        data=student(branch=branch,sem=sem,sec=sec,enroll=enroll,email=email,pas=pas)
-        data.save()
-        return HttpResponse("Registration successfull")
-    return redirect('home')
-
-def studentDashboard(request):
-    return HttpResponse("login successfull")
+def getStudents(request):
+    try:
+        branch=request.GET['branch']
+        sem=request.GET['sem']
+        sec=request.GET['sec']
+        data=student.objects.filter(branch=branch,sem=sem,sec=sec)
+        serializeData=studentSerializer(data,many=True)
+        return JsonResponse(serializeData.data,safe=False)
+    except:
+        return HttpResponse("Fail")
