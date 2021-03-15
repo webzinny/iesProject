@@ -8,6 +8,11 @@ class studentSerializer(serializers.ModelSerializer):
         model=student
         fields=['enroll','email']
 
+class teacherDataSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=teacher
+        fields=['id','name','email','pas']
+
 def validate(request):
     email=request.GET['email']
     pas=request.GET['pas']
@@ -30,3 +35,8 @@ def getStudents(request):
         return JsonResponse(serializeData.data,safe=False)
     except:
         return HttpResponse("Fail")
+
+def teacherData(request):
+    data=teacher.objects.all()
+    serializeData=teacherDataSerializer(data,many=True)
+    return JsonResponse(serializeData.data,safe=False)
