@@ -27,8 +27,24 @@ def studentRegister(request):
         enroll=request.POST['enroll']
         email=request.POST['email']
         pas=request.POST['pas']
-        data=student(branch=branch,sem=sem,sec=sec,enroll=enroll,email=email,pas=pas)
-        data.save()
+        #data=student(branch=branch,sem=sem,sec=sec,enroll=enroll,email=email,pas=pas)
+        #data.save()
+        #--------------------------------------------------------------------------------------------------------------
+        # OTP creation
+
+        from django.core.mail import send_mail
+        import random
+        subject = 'OTP'
+        message = 'Your OTP is '
+        for i in range(4):
+            message+=str(random.randint(0,9))
+        email_from = 'webzinny@gmail.com'
+        recipient_list = [email]
+        #print(message)
+        #print(email)
+        send_mail(subject,message,email_from,recipient_list,fail_silently=False)
+        #----------------------------------------------------------------------------------------------------------------
+
         return HttpResponse("Registration successfull")
     return redirect('home')
 
