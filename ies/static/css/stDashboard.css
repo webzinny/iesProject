@@ -1,0 +1,76 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300&display=swap');
+header{
+    background:linear-gradient(rgba(16,29,44,.9),rgba(16,29,44,.9)),  url('https://upload.wikimedia.org/wikipedia/commons/7/73/IES_College_of_Technology%2C_Bhopal.jpg') center;
+    height:100vh;
+    width:100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+body{
+    padding:10px;
+    background-color: #142436;
+}
+.nav-link{
+    padding: 5px;
+}
+.nav-link:hover,.nav-link:hover{
+    border-bottom:1px solid indigo;
+    color:indigo;
+}
+.navbar{
+    z-index:1;
+}
+
+.dashboard{
+    min-width:300px;
+    max-width: 600px;
+    padding-top: 20px;
+    box-shadow: 4px 2px 6px 0px #00000096;
+    z-index:2;
+    background-color: #f8f9fa;
+}
+h2{
+    font-family: 'Cormorant Unicase', serif;
+}
+form{
+    padding: 30px ;
+    text-align: left;
+    font-family: serif;
+}
+.col-md-6, .col-sm-6{
+    width: 40%;
+}
+button, input, optgroup, select, textarea {
+    margin: 0;
+    font-family: inherit;
+    font-size: inherit;
+    line-height: inherit;
+    width: 145px;
+    border: none;
+    background: transparent;
+    color: darkmagenta;
+    border-bottom: 1px solid indigo;
+}
+input:focus, optgroup:focus, select:focus, textarea:focus{
+    outline: none;
+}
+
+.editable {
+    display: inline;
+    padding: 5px;
+    text-decoration: underline;
+    text-decoration-color: indigo;
+}
+.save-btn{
+    background: linear-gradient(45deg, #3f0067fa, #6129cf);
+    color: white;
+}
+@media only screen and (max-width: 600px) {
+    .nav-link .logout{
+        display: none;
+    }
+    .fa-sign-out:before{
+        font-size:23px;
+    }
+  }

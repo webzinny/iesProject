@@ -1,6 +1,9 @@
 from django.shortcuts import render,redirect
 from django.http import HttpResponse
 from api.models import student,studentDetail,attendance
+from .models import tempReg
+from django.core.mail import send_mail
+import random
 
 def home(request):
     return render(request,'home.html')
@@ -27,26 +30,24 @@ def studentRegister(request):
         enroll=request.POST['enroll']
         email=request.POST['email']
         pas=request.POST['pas']
-        #data=student(branch=branch,sem=sem,sec=sec,enroll=enroll,email=email,pas=pas)
-        #data.save()
         #--------------------------------------------------------------------------------------------------------------
         # OTP creation
-
-        from django.core.mail import send_mail
-        import random
-        subject = 'OTP'
-        message = 'Your OTP is '
+        otp=""
         for i in range(4):
-            message+=str(random.randint(0,9))
+            otp+=str(random.randint(0,9))
+        subject = 'OTP'
+        message = 'Your OTP is '+otp
         email_from = 'webzinny@gmail.com'
         recipient_list = [email]
-        #print(message)
-        #print(email)
         send_mail(subject,message,email_from,recipient_list,fail_silently=False)
         #----------------------------------------------------------------------------------------------------------------
-
-        return HttpResponse("Registration successfull")
+        #data=tempReg(branch=branch,sem=sem,sec=sec,enroll=enroll,email=email,pas=pas,otp=otp)
+        #data.save()
+        return render(request,'otpVerify.html')
     return redirect('home')
 
 def studentDashboard(request):
     return HttpResponse("login successfull")
+
+def test(request):
+    return render(request,'otpVerify.html')

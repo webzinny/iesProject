@@ -39,7 +39,14 @@
         <!-- Button trigger modal -->
         <center>
           {%if msg%}
-            <h3 style="color:white;">{{msg}}</h3>
+          <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin:0 10%">
+              <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+              <br>
+              <!---show error msg -->
+              <h4><i class='fa fa-info'></i> {{msg}}</h4>
+          </div>
           {%endif%}
           <div >
             <button type="button" class="btn btn-lg " style="margin-top:10px;" data-toggle="modal" data-target="#loginModal">
@@ -158,21 +165,21 @@
                                 </select>
                                 <select class='branch form-control mb-1' name="sec">
                                     <option class='disabled'>--Section--</option>
-                                    <option value="A">A</option>
-                                    <option value="B">B</option>
-                                    <option value="C">C</option>
+                                    <option value="A">Sec-A</option>
+                                    <option value="B">Sec-B</option>
+                                    <option value="C">Sec-C</option>
                                 </select>
                                 <br><br>
-                                <input type="text" class="form-control mb-2" name="enroll" id="enroll"
+                                <input type="text" class="form-control mb-2" name="enroll" id="enrollReg"
                                     placeholder="Enrollment No." required>
 
                                     <input type="email" class="form-control mb-2" name='email'
-                                        placeholder="email" required>
+                                        placeholder="Email" required>
 
-                                <input type="password" class="form-control mb-2" name='pas'
+                                <input type="password" class="form-control mb-2" name='pas' id="pasReg"
                                     placeholder="Password" required>
 
-                                    <input type="password" class="form-control mb-2" name='pas' id='pas'
+                                    <input type="password" class="form-control mb-2" id='cnfPas'
                                         placeholder="Confirm Password" required>
                                 <center><button type="submit" class="btn reg btn-primary">Register</button></center>
                             </form>
@@ -190,12 +197,6 @@
     </div>
 
     </section>
-    <script>
-        $('#loginModal').on('show.bs.modal', event => {
-            var button = $(event.relatedTarget);
-            var modal = $(this);
-        });
-    </script>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
         integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
         crossorigin="anonymous"></script>
@@ -205,6 +206,13 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
+        <script>
+            $('#loginModal').on('show.bs.modal', event => {
+                var button = $(event.relatedTarget);
+                var modal = $(this);
+            });
+            
+        </script>
 </body>
 
 </html>
