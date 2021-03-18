@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+{%load static%}
 <html>
 
 <head>
@@ -7,12 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="dashboard.css">
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-
-    <script type="text/javascript" href='dashboard.js'></script>
+    <link rel="stylesheet" href="{%static "css/stDashboard.css"%}">
 </head>
 
 <body>
@@ -22,12 +19,12 @@
             <a class="navbar-brand ml-lg-5 ml-sm-1" href="home.html">Student Adda</a>
                 <ul class="navbar-nav ml-auto mt-2 p-1 mt-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" href="home.html"> <span class='logout'>Log Out</span> <span class="fa fa-sign-out"></span></a>
+                        <a class="nav-link" href="logout"> <span class='logout'>LogOut</span> <span class="fa fa-sign-out"></span></a>
                     </li>
                 </ul>
         </nav>
         <div class="container dashboard">
-            <h2 class="text-center pt-3">Welcome! <span style="color:indigo;font-weight:bolder;">Atul</span> </h2>
+            <h2 class="text-center pt-3">Welcome!<br> <span style="color:indigo;font-weight:bolder;">{{data.name}}</span> </h2>
 
             <p class="text-center" style="font-family: serif; font-size: 14px;">Click fields to edit your details</p>
             <center>
@@ -38,7 +35,7 @@
                                 <label for="enroll">Enroll.:</label>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <span id="enroll" style="display: inline; box-shadow: none;">0177CS181131</span>
+                                <span id="enroll" style="display: inline; box-shadow: none;">{{data.enroll}}</span>
                             </div>
                         </div>
                         <div class='row'>
@@ -46,7 +43,7 @@
                                 <label for="name">Name :</label>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <span id="name" class="editable" style="display: inline;">wonderhub</span>
+                                <span id="name" class="editable" style="display: inline;">{{data.name}}</span>
                                 <input type="text" style="display: none;" name="name">
                             </div>
                         </div>
@@ -57,7 +54,7 @@
                                 <label for="email">Email :</label>
                             </div>
                             <div class="col-md-6 col-sm-6">
-                                <span id="email" class="editable" style="display: inline;">railcdv@gmail.com</span>
+                                <span id="email" class="editable" style="display: inline;">{{data.email}}</span>
                                 <input type="email" style="display: none;" name="email">
                             </div>
                         </div>
@@ -96,9 +93,9 @@
                         </div>
                     </div>
                     <center><button class="btn save-btn">Save</button></center>
-                
+
             </form>
-                
+
             </center>
         </div>
     </header>

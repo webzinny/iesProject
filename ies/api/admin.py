@@ -5,10 +5,10 @@ class teacherAdmin(admin.ModelAdmin):
     list_display=['id','name','email','pas']
 
 class studentAdmin(admin.ModelAdmin):
-    list_display=['id','branch','sem','sec','enroll','email','pas','att']
+    list_display=['id','branch','sem','sec','enroll','name','email','pas','att']
 
 class studentDetailAdmin(admin.ModelAdmin):
-    list_display=['enroll','name','dob','phone','add']
+    list_display=['enroll','dob','phone','add']
 
 class attendanceAdmin(admin.ModelAdmin):
     list_display=['id','date','stu']

@@ -11,6 +11,7 @@ class student(models.Model):
     sec=models.CharField(max_length=2)
     enroll=models.CharField(max_length=10)
     email=models.EmailField()
+    name=models.CharField(max_length=32)
     pas=models.CharField(max_length=20)
 
     def __str__(self):
@@ -21,7 +22,6 @@ class student(models.Model):
 
 class studentDetail(models.Model):
     enroll=models.OneToOneField(student,on_delete=models.CASCADE,primary_key=True)
-    name=models.CharField(max_length=32)
     dob=models.DateField()
     phone=models.IntegerField()
     add=models.CharField(max_length=64)

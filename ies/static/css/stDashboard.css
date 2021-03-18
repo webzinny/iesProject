@@ -1,15 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@300&display=swap');
-header{
+body{
     background:linear-gradient(rgba(16,29,44,.9),rgba(16,29,44,.9)),  url('https://upload.wikimedia.org/wikipedia/commons/7/73/IES_College_of_Technology%2C_Bhopal.jpg') center;
     height:100vh;
     width:100%;
     background-repeat: no-repeat;
     background-size: cover;
-
-}
-body{
     padding:10px;
-    background-color: #142436;
 }
 .nav-link{
     padding: 5px;
@@ -66,6 +62,7 @@ input:focus, optgroup:focus, select:focus, textarea:focus{
     background: linear-gradient(45deg, #3f0067fa, #6129cf);
     color: white;
 }
+
 @media only screen and (max-width: 600px) {
     .nav-link .logout{
         display: none;

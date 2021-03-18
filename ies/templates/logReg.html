@@ -8,8 +8,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="{%static 'css/home.css'%}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{%static 'css/logReg.css'%}">
 
 </head>
 
@@ -38,25 +38,27 @@
             alt="ies logo">
         <!-- Button trigger modal -->
         <center>
-          {%if msg%}
-          <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin:0 10%">
-              <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-              </button>
-              <br>
-              <!---show error msg -->
-              <h4><i class='fa fa-info'></i> {{msg}}</h4>
-          </div>
-          {%endif%}
-          <div >
-            <button type="button" class="btn btn-lg " style="margin-top:10px;" data-toggle="modal" data-target="#loginModal">
-                Login <i class="fa fa-arrow-right"></i>
-            </button>
-          </div>
+            {%if msg%}
+            <div class="alert alert-warning alert-dismissible fade show" role="alert" style="margin:0 10%">
+                <button type="submit" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <br>
+                <!---show error msg -->
+                <h4><i class='fa fa-info'></i> {{msg}}</h4>
+            </div>
+            {%endif%}
             <div>
-              <button type="button" style="margin-top:25px;" class="btn btn-lg" data-toggle="modal" data-target="#registerModel">
-                  Register <i class="fa fa-arrow-right"></i>
-              </button>
+                <button type="button" class="btn btn-lg " style="margin-top:10px;" data-toggle="modal"
+                    data-target="#loginModal">
+                    Login <i class="fa fa-arrow-right"></i>
+                </button>
+            </div>
+            <div>
+                <button type="button" style="margin-top:25px;" class="btn btn-lg" data-toggle="modal"
+                    data-target="#registerModel">
+                    Register <i class="fa fa-arrow-right"></i>
+                </button>
             </div>
 
         </center>
@@ -74,7 +76,8 @@
                                 <stop stop-color="rgba(0, 255, 20.434, 1)" offset="100%"></stop>
                             </linearGradient>
                         </defs>
-                        <path style="transform: translate(329px, 286px) rotateZ(-14deg); opacity:1" fill="url(#sw-gradient-0)"
+                        <path style="transform: translate(329px, 286px) rotateZ(-14deg); opacity:1"
+                            fill="url(#sw-gradient-0)"
                             d="M0,196L26.7,163.3C53.3,131,107,65,160,49C213.3,33,267,65,320,114.3C373.3,163,427,229,480,245C533.3,261,587,229,640,236.8C693.3,245,747,294,800,310.3C853.3,327,907,310,960,253.2C1013.3,196,1067,98,1120,114.3C1173.3,131,1227,261,1280,269.5C1333.3,278,1387,163,1440,171.5C1493.3,180,1547,310,1600,310.3C1653.3,310,1707,180,1760,155.2C1813.3,131,1867,212,1920,212.3C1973.3,212,2027,131,2080,98C2133.3,65,2187,82,2240,138.8C2293.3,196,2347,294,2400,343C2453.3,392,2507,392,2560,367.5C2613.3,343,2667,294,2720,285.8C2773.3,278,2827,310,2880,334.8C2933.3,359,2987,376,3040,375.7C3093.3,376,3147,359,3200,367.5C3253.3,376,3307,408,3360,359.3C3413.3,310,3467,180,3520,138.8C3573.3,98,3627,147,3680,138.8C3733.3,131,3787,65,3813,32.7L3840,0L3840,490L3813.3,490C3786.7,490,3733,490,3680,490C3626.7,490,3573,490,3520,490C3466.7,490,3413,490,3360,490C3306.7,490,3253,490,3200,490C3146.7,490,3093,490,3040,490C2986.7,490,2933,490,2880,490C2826.7,490,2773,490,2720,490C2666.7,490,2613,490,2560,490C2506.7,490,2453,490,2400,490C2346.7,490,2293,490,2240,490C2186.7,490,2133,490,2080,490C2026.7,490,1973,490,1920,490C1866.7,490,1813,490,1760,490C1706.7,490,1653,490,1600,490C1546.7,490,1493,490,1440,490C1386.7,490,1333,490,1280,490C1226.7,490,1173,490,1120,490C1066.7,490,1013,490,960,490C906.7,490,853,490,800,490C746.7,490,693,490,640,490C586.7,490,533,490,480,490C426.7,490,373,490,320,490C266.7,490,213,490,160,490C106.7,490,53,490,27,490L0,490Z">
                         </path>
                     </svg>
@@ -87,15 +90,15 @@
                     <div class="modal-body">
                         <div class="container-fluid">
                             <form action="login" method="post">
-                              {%csrf_token%}
+                                {%csrf_token%}
 
                                 <input type="text" class="form-control mb-1" name="enroll" id="enroll"
                                     placeholder="Enrollment No." required>
                                 <input type="password" class="form-control mb-1" name='pas' id='pas'
                                     placeholder="Password" required>
 
-                                    <button type="submit" class="btn login-btn btn-primary"><i
-                                            class="fa fa-arrow-right"></i></button>
+                                <button type="submit" class="btn login-btn btn-primary"><i
+                                        class="fa fa-arrow-right"></i></button>
 
                                 <a class='forgot' href='#'>Forgot ?</a>
 
@@ -143,7 +146,8 @@
                     <div class="modal-body">
                         <div class="container-fluid">
                             <form action="reg" method="post">
-                              {%csrf_token%}
+                                {%csrf_token%}
+                                <div id="regInp">
                                 <select class='clg form-control mb-1' name="branch">
                                     <option class='disabled'>--Branch--</option>
                                     <option value="CSE">Computer Science & Engineering</option>
@@ -172,16 +176,36 @@
                                 <br><br>
                                 <input type="text" class="form-control mb-2" name="enroll" id="enrollReg"
                                     placeholder="Enrollment No." required>
+                                    <input type="text" class="form-control mb-2" name="name" id="nameReg"
+                                        placeholder="Your Name" required>
 
-                                    <input type="email" class="form-control mb-2" name='email'
-                                        placeholder="Email" required>
+                                <input type="email" class="form-control mb-2" name='email'id="regEmail" placeholder="Email" required>
 
                                 <input type="password" class="form-control mb-2" name='pas' id="pasReg"
-                                    placeholder="Password" required>
+                                    placeholder="Password" onchange="passValidate()"  required>
 
-                                    <input type="password" class="form-control mb-2" id='cnfPas'
-                                        placeholder="Confirm Password" required>
-                                <center><button type="submit" class="btn reg btn-primary">Register</button></center>
+                                <input type="password" class="form-control mb-2" id='cnfPas'
+                                  onchange="pasMatch()"  placeholder="Confirm Password" required>
+
+                                </div>
+
+
+                                  <div class='otp' id="otpEnter" style="display:none">
+                                    <div class='otpVerify'>
+                                        <div class="form-group">
+                                          <p>An otp has been sent to your email:--</p>
+                                          <input type="number" class="form-control" name="otp" id="otp" placeholder="OTP" onkeyup="verifyOtp()">
+                                        </div>
+                                    </div>
+                                  </div>
+                                  <center>
+                                    <button type="button" id="verifyBtn" onclick="getOtp()" style="letter-spacing:2px;font-weight:500;" class="btn btn-disabled" disabled>
+                                      Verify
+                                    </button>
+                                    <button type="submit" id="regBtn" style="letter-spacing:2px;font-weight:500;display:none" class="btn btn-success" disabled>
+                                      Register
+                                    </button>
+                                  </center>
                             </form>
                         </div>
                     </div>
@@ -192,7 +216,6 @@
     </header>
     <div id='about'>
         <div class="container">
-
         </div>
     </div>
 
@@ -206,13 +229,50 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"
         integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
         crossorigin="anonymous"></script>
-        <script>
-            $('#loginModal').on('show.bs.modal', event => {
-                var button = $(event.relatedTarget);
-                var modal = $(this);
-            });
-            
-        </script>
+    <script>
+        $('#loginModal').on('show.bs.modal', event => {
+            var button = $(event.relatedTarget);
+            var modal = $(this);
+        });
+        var e = document.getElementById("pasReg");
+        var btn=document.getElementById("verifyBtn");
+        var ot="";
+        function passValidate(){
+          if (e.value.length<6 || e.value.length>19){
+            e.style="outline-color:red;outline-style:auto";
+          }else{
+            e.style="outline-color:green;outline-style:auto";
+          };
+        };
+        function pasMatch(){
+          var cnfPas=document.getElementById('cnfPas');
+          if(cnfPas.value===e.value){
+            cnfPas.style="outline-color:green;outline-style:auto";
+            btn.classList.remove("btn-disabled");
+            btn.classList.add("btn-success");
+            btn.disabled=false;
+          }else{
+            cnfPas.style="outline-color:red;outline-style:auto";
+          }
+        };
+
+        function getOtp() {
+          document.getElementById('otpEnter').style="display:block";
+          document.getElementById('regInp').style="display:none";
+          document.getElementById('regBtn').style="display:block";
+          btn.style="display:none";
+          let email=document.getElementById('regEmail').value;
+          fetch("http://api.webzinny.in/st/getOtp?email="+email)
+          .then((res)=>(res.json().then((data)=>(ot=data))
+          ));
+        };
+        function verifyOtp(){
+          let inp=document.getElementById('otp').value;
+          if(inp===ot.otp){
+            document.getElementById('regBtn').disabled=false;
+          }
+        }
+    </script>
 </body>
 
 </html>

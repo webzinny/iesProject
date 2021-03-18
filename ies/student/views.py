@@ -1,12 +1,14 @@
 from django.shortcuts import render,redirect
-from django.http import HttpResponse
+from django.http import HttpResponse,JsonResponse
 from api.models import student,studentDetail,attendance
-from .models import tempReg
 from django.core.mail import send_mail
 import random
 
-def home(request):
-    return render(request,'home.html')
+def stDashboard(request):
+    if 'student' in request.session:
+        data=student.objects.get(enroll=request.session['student'])
+        return render(request,'stDashboard.html',{'data':data})
+    return redirect('login')
 
 def studentLogin(request):
     if request.method=='POST':
@@ -15,12 +17,13 @@ def studentLogin(request):
         try:
             obj=student.objects.get(enroll=enroll)
             if obj.pas==pas:
-                return redirect('studentDashboard')
+                request.session['student']=enroll
+                return redirect('stDashboard')
             else:
-                return render(request,'home.html',{'msg':'Wrong Password'})
+                return render(request,'logReg.html',{'msg':'Wrong Password'})
         except :
-            return render(request,'home.html',{'msg':'Enrollment not found'})
-    return redirect('home')
+            return render(request,'logReg.html',{'msg':'Enrollment not found'})
+    return render(request,'logReg.html')
 
 def studentRegister(request):
     if request.method=='POST':
@@ -29,25 +32,28 @@ def studentRegister(request):
         sec=request.POST['sec']
         enroll=request.POST['enroll']
         email=request.POST['email']
+        name=request.POST['name']
         pas=request.POST['pas']
-        #--------------------------------------------------------------------------------------------------------------
-        # OTP creation
-        otp=""
-        for i in range(4):
-            otp+=str(random.randint(0,9))
-        subject = 'OTP'
-        message = 'Your OTP is '+otp
-        email_from = 'webzinny@gmail.com'
-        recipient_list = [email]
-        send_mail(subject,message,email_from,recipient_list,fail_silently=False)
-        #----------------------------------------------------------------------------------------------------------------
-        #data=tempReg(branch=branch,sem=sem,sec=sec,enroll=enroll,email=email,pas=pas,otp=otp)
-        #data.save()
-        return render(request,'otpVerify.html')
-    return redirect('home')
+        data=student(branch=branch,sem=sem,sec=sec,enroll=enroll,email=email,name=name,pas=pas)
+        data.save()
+        request.session['student']=enroll
+    return redirect('stDashboard')
 
-def studentDashboard(request):
-    return HttpResponse("login successfull")
+def getOtp(request):
+    email=request.GET['email']
+    otp=""
+    for i in range(4):
+        otp+=str(random.randint(0,9))
+    subject = 'OTP - IES | Student Adda'
+    message ="Your OTP for verification is --  "+otp
+    email_from = 'webzinny@gmail.com'
+    recipient_list = [email]
+    send_mail(subject,message,email_from,recipient_list,fail_silently=False)
+    return JsonResponse({"otp":otp});
 
-def test(request):
-    return render(request,'otpVerify.html')
+def logOut(request):
+    try:
+        del request.session['student']
+        return redirect ('login')
+    except :
+        return redirect('login')
