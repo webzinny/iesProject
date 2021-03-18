@@ -2,6 +2,7 @@ from django.http import JsonResponse,HttpResponse
 from .models import *
 from rest_framework import serializers
 from rest_framework.renderers import JSONRenderer
+from django.views.decorators.csrf import csrf_exempt
 
 class studentSerializer(serializers.ModelSerializer):
     class Meta:
@@ -40,3 +41,11 @@ def teacherData(request):
     data=teacher.objects.all()
     serializeData=teacherDataSerializer(data,many=True)
     return JsonResponse(serializeData.data,safe=False)
+
+@csrf_exempt
+def makeAtt(request):
+    try:
+        data=request.POST['att']
+        return JsonResponse({"status":"GOOD"})
+    except:
+        return JsonResponse({"status":"BAD"})

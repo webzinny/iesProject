@@ -9,9 +9,9 @@ class student(models.Model):
     branch=models.CharField(max_length=5)
     sem=models.IntegerField()
     sec=models.CharField(max_length=2)
-    enroll=models.CharField(max_length=10)
+    enroll=models.CharField(max_length=15)
     email=models.EmailField()
-    name=models.CharField(max_length=32)
+    name=models.CharField(max_length=50)
     pas=models.CharField(max_length=20)
 
     def __str__(self):

@@ -5,4 +5,5 @@ urlpatterns=[
     path('validate',validate),
     path('getStudents',getStudents),
     path('teacherData',teacherData),
+    path('makeatt',makeAtt),
 ]
