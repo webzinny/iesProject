@@ -46,7 +46,7 @@ def getOtp(request):
         otp+=str(random.randint(0,9))
     subject = 'OTP - IES | Student Adda'
     message ="Your OTP for verification is --  "+otp
-    email_from = 'webzinny@gmail.com'
+    email_from = 'webzinny@zohomail.in'
     recipient_list = [email]
     send_mail(subject,message,email_from,recipient_list,fail_silently=False)
     return JsonResponse({"otp":otp});
